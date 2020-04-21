@@ -1,6 +1,3 @@
-// Include routes 
-require("./routes/tutorial.routes")(app);
-
 // This help us to build REST APIs
 const express = require("express");
 
@@ -25,8 +22,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Calling connect() method to connect to the DB
-const db = require("./app/models");
-db.moongose.connect(db.url, {
+const db = require("./models");
+db.mongoose.connect(db.url, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(()=>{
@@ -40,6 +37,9 @@ db.moongose.connect(db.url, {
 app.get("/", (req,res) =>{
     res.json({ message: "Welcome to Juanma API CRUD application" });
 });
+
+// Include routes 
+require("./routes/tutorial.routes")(app);
 
 // Set port 
 const PORT = process.env.PORT || 8080;
