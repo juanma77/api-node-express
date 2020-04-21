@@ -1,3 +1,6 @@
+// Include routes 
+require("./routes/tutorial.routes")(app);
+
 // This help us to build REST APIs
 const express = require("express");
 
