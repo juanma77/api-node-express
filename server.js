@@ -21,6 +21,18 @@ app.use(bodyParser.json());
 //Parse requests of content-type application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// Calling connect() method to connect to the DB
+const db = require("./app/models");
+db.moongose.connect(db.url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}).then(()=>{
+    console.log("Connected successfully to the database!")
+}).catch(err =>{
+    console.log("Can not connect to the database", err);
+    proccess.exit();
+}); 
+
 // Simple route to see at the start
 app.get("/", (req,res) =>{
     res.json({ message: "Welcome to Juanma API CRUD application" });
